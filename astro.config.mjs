@@ -7,6 +7,5 @@ import icon from "astro-icon";
 // https://astro.build/config
 export default defineConfig({
   site: "https://codeiaspa.github.io",
-  base: "/codeiaspa.github.io",
   integrations: [tailwind(), mdx(), sitemap(), icon()],
 });
