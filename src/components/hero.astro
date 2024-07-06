@@ -1,6 +1,6 @@
 ---
 import { Picture } from "astro:assets";
-import heroImage from "assets/hero.png";
+import heroImage from "assets/hero-alt.png";
 import Link from "@components/ui/link.astro";
 import { Icon } from "astro-icon/components";
 ---
@@ -9,21 +9,26 @@ import { Icon } from "astro-icon/components";
   class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
   <div class="py-6 md:order-1 hidden md:block">
     <Picture
+      id="astronaut"
       src={heroImage}
       alt="Astronaut in the air"
       widths={[200, 400, 600]}
       sizes="(max-width: 800px) 100vw, 620px"
       loading="eager"
       format="avif"
+      class="h-full w-full object-cover"
     />
   </div>
   <div>
     <h1
-      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
+      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-violet-300">
       CodeIA Sitios web + inteligencia artificial
     </h1>
-    <p class="text-lg mt-4 text-slate-600 max-w-xl">
-      Innovación y desarrollo para el futuro <br /> impulsando cambios significativos para Chile y America Latina.
+    <p class="text-lg mt-4 text-slate-600 max-w-xl dark:text-slate-100">
+      Innovación y desarrollo para el futuro <br />
+      <p class="text-sm mt-2 text-slate-600 max-w-xl dark:text-pink-400">
+        impulsando cambios significativos para Chile y America Latina.
+      </p>
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
       <Link
@@ -32,9 +37,8 @@ import { Icon } from "astro-icon/components";
         target="_blank"
         class="flex gap-1 items-center justify-center"
         rel="noopener">
-        <Icon class="w-5 h-5 text-[#25D366]"  name="bx:bxl-whatsapp" />
-
-         whatsapp
+        <Icon class="w-5 h-5 text-[#25D366]" name="bx:bxl-whatsapp" />
+        whatsapp
       </Link>
       <Link
         size="lg"
@@ -44,8 +48,29 @@ import { Icon } from "astro-icon/components";
         class="flex gap-1 items-center justify-center"
         target="https://github.com/codeIASpa">
         <Icon class="text-black w-4 h-4" name="bx:bxl-github" />
-         GitHub Repo
+        GitHub Repo
       </Link>
     </div>
   </div>
 </main>
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 90px, 0);
+    }
+  }
+
+  #astronaut {
+    animation: float linear 3s infinite alternate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #astronaut {
+      animation: none;
+    }
+  }
+</style>
