@@ -3,7 +3,7 @@ draft: false
 title: "Casos de Uso de Zapier y Tecnologías de IA"
 snippet: "En la era digital actual, la automatización de tareas y la inteligencia artificial (IA) juegan un papel crucial en la optimización de procesos y la mejora de la productividad. Herramientas como Zapier y modelos de IA de última generación, como los de OpenAI, Mistral y Cloudi 3, están revolucionando la manera en que las empresas operan. Este blog explora casos de uso prácticos de estas tecnologías y cómo pueden integrarse para crear soluciones innovadoras."
 image: {
-    src: "https://github.com/codeIASpa/codeIASpa.github.io/tree/main/public/blogimg/zapier-ia.webp",
+    src: "https://github.com/codeIASpa/codeIASpa.github.io/tree/main/public/blogimg/zapier-ia.png",
     alt: "IA, OpenIA, Cloudi, Zapier"
 }
 publishDate: "2024-07-21 15:39"
