@@ -9,7 +9,7 @@ image: {
 publishDate: "2024-08-03 15:39"
 category: "Inteligencia Artificial"
 author: "Jaime Hernández"
-tags: [Zapier, openIA, Cloudi]
+tags: [IA, OpenIA, EdgeComputing, Cloud, Innovacion, RealidadAumentada]
 ---
 
 # <div class="text-gray-300">Introducción</div> 
