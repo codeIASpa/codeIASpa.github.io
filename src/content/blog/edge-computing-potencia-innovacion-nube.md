@@ -13,7 +13,7 @@ tags: [Zapier, openIA, Cloudi]
 ---
 
 # <div class="text-gray-300">Introducción</div> 
-- En la era digital actual, la automatización de tareas y la inteligencia artificial (IA) juegan un papel crucial en la optimización de procesos y la mejora de la productividad. Herramientas como Zapier y modelos de IA de última generación, como los de OpenAI, Mistral y Cloudi 3, están revolucionando la manera en que las empresas operan. Este blog explora casos de uso prácticos de estas tecnologías y cómo pueden integrarse para crear soluciones innovadoras.
+- La computación en la nube ha transformado la manera en que manejamos y procesamos datos. Sin embargo, con el creciente volumen de datos generados por dispositivos IoT y aplicaciones móviles, la necesidad de procesamiento en tiempo real se ha vuelto crucial. Aquí es donde entra en juego el edge computing. Al acercar el procesamiento de datos a la fuente de generación, la computación periférica reduce la latencia y el uso de ancho de banda, garantizando tiempos de respuesta más rápidos y análisis en tiempo real. En codeIA.cl, estamos comprometidos a ayudar a las empresas a aprovechar el poder del edge computing para resolver problemas complejos y mejorar la eficiencia operativa.
 
 ## <div class="text-gray-300">Casos Prácticos de Edge Computing</div> 
 1. Agricultura Inteligente
