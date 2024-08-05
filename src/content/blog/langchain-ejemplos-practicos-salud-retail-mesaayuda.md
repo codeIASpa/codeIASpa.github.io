@@ -4,12 +4,12 @@ title: "Descubre LangChain: Ejemplos Prácticos en Salud, Retail y Mesa de Ayuda
 snippet: "En el mundo de la inteligencia artificial y el procesamiento del lenguaje natural, LangChain se destaca como una herramienta poderosa para la creación y manejo de flujos de trabajo de IA. En este blog, exploraremos qué es LangChain"
 image: {
     src: "https://raw.githubusercontent.com/codeIASpa/codeIASpa.github.io/main/public/blogimg/langchain.png",
-    alt: "IA, LangChain, ,Salud, Retail , MesaDeAyuda, Tecnología, codeIA"
+    alt: "IA, LangChain, Salud, Retail, MesaDeAyuda, Tecnología, codeIA"
 }
 publishDate: "2024-08-05 08:39"
 category: "Inteligencia Artificial"
 author: "Jaime Hernández"
-tags: [IA, ,LangChain, Salud, Retail, MesaDeAyuda, Tecnología, codeIA]
+tags: [IA, LangChain, Salud, Retail, MesaDeAyuda, Tecnología, codeIA]
 ---
 
 # <div class="text-gray-300">Introducción</div> 
