@@ -3,7 +3,7 @@ draft: false
 title: "Cursos de programación e IA en inglés y español"
 snippet: "En el 2024, hay una amplia gama de cursos en programación e integraciones con inteligencia artificial (IA), tanto en inglés como en español, que pueden ayudar a profesionales y estudiantes a desarrollar sus habilidades en este campo en constante evolución."
 image: {
-    src: "https://raw.githubusercontent.com/codeIASpa/codeIASpa.github.io/main/public/blogimg/zapier-ia.png",
+    src: "https://raw.githubusercontent.com/codeIASpa/codeIASpa.github.io/main/public/blogimg/cursosia.png",
     alt: "IA, OpenIA, Cloudi, Llama"
 }
 publishDate: "2024-08-22 15:39"
