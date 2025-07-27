@@ -8,7 +8,14 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "node deploy.cjs",
+    "deploy:bash": "./deploy.sh",
+    "deploy:simple": "./deploy-simple.sh",
+    "deploy:robust": "./deploy-robust.sh",
+    "setup:env": "./setup-env.sh",
+    "optimize": "./optimize-build.sh",
+    "build:optimized": "npm run build && npm run optimize"
   },
   "dependencies": {
     "@astrojs/mdx": "^3.0.1",
@@ -29,5 +36,9 @@
     "astro-seo": "^0.8.3",
     "sharp": "^0.33.4",
     "tailwindcss": "^3.4.3"
+  },
+  "devDependencies": {
+    "basic-ftp": "^5.0.5",
+    "dotenv": "^17.2.1"
   }
 }
