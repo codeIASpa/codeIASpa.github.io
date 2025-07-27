@@ -7,9 +7,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: [
-          "Inter Variable",
           "Inter",
-          "Bricolage Grotesque Variable", 
+          "Bricolage Grotesque", 
           ...defaultTheme.fontFamily.sans,
         ],
       },

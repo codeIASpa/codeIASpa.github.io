@@ -2,8 +2,7 @@
 import { SEO } from "astro-seo";
 import Footer from "@components/footer.astro";
 import Navbar from "@components/navbar/navbar.astro";
-import "@fontsource-variable/inter";
-import '@fontsource-variable/bricolage-grotesque';
+// Fonts will be loaded via CDN for better compatibility
 
 export interface Props {
   title: string;
@@ -41,6 +40,11 @@ const makeTitle = title
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Load fonts from CDN for better compatibility -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Bricolage+Grotesque:opsz,wght@10..48,100..900&display=swap" rel="stylesheet">
     
     <!-- Preload critical resources -->
     <link rel="preload" href="/opengraph.jpg" as="image" />
