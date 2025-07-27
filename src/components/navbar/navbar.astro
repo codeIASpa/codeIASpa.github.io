@@ -3,6 +3,7 @@ import Container from "@components/container.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import LanguageSelector from "../language-selector.astro";
+import { t } from "../../utils/i18n.js";
 
 const menuitems: Array<{
   title: string;
@@ -11,7 +12,7 @@ const menuitems: Array<{
   badge?: boolean;
 }> = [
   {
-    title: "Proyectos",
+    title: t('projects'),
     path: "#",
     children: [
     { title: "Automatización Empresarial con IA", path: "/demo/automatizacion-empresarial/index.html" },
@@ -21,15 +22,15 @@ const menuitems: Array<{
     ],
   },
   {
-    title: "Nosotros",
+    title: t('about'),
     path: "/about",
   },
   {
-    title: "Blog",
+    title: t('blog'),
     path: "/blog",
   },
   {
-    title: "Contacto",
+    title: t('contact'),
     path: "/contact",
   },
 ];

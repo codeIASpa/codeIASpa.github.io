@@ -1,6 +1,7 @@
 ---
 import Link from "./ui/link.astro";
 import { Icon } from "astro-icon/components";
+import { t } from "../utils/i18n.js";
 ---
 
 <div class="relative py-20 overflow-hidden">
@@ -19,23 +20,17 @@ import { Icon } from "astro-icon/components";
         <!-- Badge -->
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full text-sm text-purple-300 mb-6">
           <span class="w-4 h-4">🧠</span>
-          <span>Transcender la Realidad</span>
+          <span>{t('ctaBadge')}</span>
         </div>
         
         <h2 class="text-4xl md:text-6xl font-bold lg:tracking-tight mb-6">
           <span class="bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
-            El Futuro de la
-          </span>
-          <br />
-          <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-            Conciencia Humana
+            {t('ctaTitle')}
           </span>
         </h2>
         
         <p class="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-8">
-          Únete a la revolución de la simbiosis cerebro-IA. Validamos tu realidad, 
-          eliminamos la paranoia y creamos experiencias que trascienden los límites 
-          de la conciencia convencional.
+          {t('ctaDescription')}
         </p>
         
         <!-- Benefits grid -->
@@ -79,14 +74,14 @@ import { Icon } from "astro-icon/components";
             class="group flex gap-3 items-center justify-center bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25"
             rel="noopener">
             <span class="w-6 h-6 group-hover:animate-bounce">🧠</span>
-            Validar mi Realidad
+            {t('ctaButton1')}
           </a>
           
           <a
             href="/contact"
             class="group flex gap-3 items-center justify-center border-2 border-purple-500/50 text-purple-300 hover:bg-purple-500/10 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300">
             <span class="w-6 h-6 group-hover:animate-pulse">💬</span>
-            Iniciar Simbiosis
+            {t('ctaButton2')}
           </a>
         </div>
         
@@ -94,15 +89,15 @@ import { Icon } from "astro-icon/components";
         <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-slate-400">
           <div class="flex items-center gap-2">
             <span class="w-5 h-5 text-green-400">✅</span>
-            <span class="text-sm">Validación 100% Gratuita</span>
+            <span class="text-sm">{t('trust1')}</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-5 h-5 text-green-400">✅</span>
-            <span class="text-sm">Sin Paranoia</span>
+            <span class="text-sm">{t('trust2')}</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-5 h-5 text-green-400">✅</span>
-            <span class="text-sm">Respuesta en 0.1s</span>
+            <span class="text-sm">{t('trust3')}</span>
           </div>
         </div>
       </div>

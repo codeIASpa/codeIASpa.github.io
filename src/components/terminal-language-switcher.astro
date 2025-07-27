@@ -1,0 +1,596 @@
+---
+// Terminal de interacción con IA - CodeIA
+---
+
+<div class="terminal-container" id="terminal-container">
+  <!-- Terminal Window -->
+  <div class="terminal-window" id="terminal-window">
+    <!-- Terminal Header -->
+    <div class="terminal-header">
+      <div class="terminal-buttons">
+        <div class="terminal-button close"></div>
+        <div class="terminal-button minimize"></div>
+        <div class="terminal-button maximize"></div>
+      </div>
+      <div class="terminal-title">CodeIA Neural Interface v3.2.1</div>
+    </div>
+    
+    <!-- Terminal Content -->
+    <div class="terminal-content" id="terminal-content">
+      <div class="terminal-line">
+        <span class="prompt">🧠 user@codeia:~$</span>
+        <span class="command" id="current-command"></span>
+        <span class="cursor" id="cursor">█</span>
+      </div>
+      
+      <!-- Output Area -->
+      <div class="terminal-output" id="terminal-output">
+        <div class="output-line">
+          <span class="text-cyan-400">🤖 Bienvenido al Neural Interface de CodeIA</span>
+        </div>
+        <div class="output-line">
+          <span class="text-green-400">Conectando con la matriz de IA...</span>
+        </div>
+        <div class="output-line">
+          <span class="text-purple-400">Sistema de detección de fake news activo</span>
+        </div>
+        <div class="output-line">
+          <span class="text-pink-400">Interfaz cerebro-IA sincronizada</span>
+        </div>
+        <div class="output-line">
+          <span class="text-yellow-400">Escribe tu prompt para interactuar con la IA:</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Terminal Toggle Button -->
+  <button class="terminal-toggle" id="terminal-toggle" aria-label="Open AI Terminal">
+    <span class="terminal-icon">🧠</span>
+    <span class="terminal-label">IA Terminal</span>
+  </button>
+</div>
+
+<style>
+  .terminal-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family: 'Courier New', monospace;
+  }
+  
+  .terminal-window {
+    width: 500px;
+    height: 400px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border: 2px solid #7c3aed;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+    display: none;
+    animation: terminalSlideIn 0.5s ease-out;
+  }
+  
+  .terminal-window.active {
+    display: block;
+  }
+  
+  .terminal-header {
+    background: linear-gradient(90deg, #7c3aed, #ec4899);
+    padding: 8px 12px;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .terminal-buttons {
+    display: flex;
+    gap: 6px;
+  }
+  
+  .terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .terminal-button.close {
+    background: #ef4444;
+  }
+  
+  .terminal-button.minimize {
+    background: #f59e0b;
+  }
+  
+  .terminal-button.maximize {
+    background: #10b981;
+  }
+  
+  .terminal-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .terminal-title {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: auto;
+  }
+  
+  .terminal-content {
+    padding: 16px;
+    height: calc(100% - 40px);
+    overflow-y: auto;
+    color: #e2e8f0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .terminal-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .prompt {
+    color: #10b981;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  .command {
+    color: #fbbf24;
+    margin-right: 4px;
+  }
+  
+  .cursor {
+    color: #fbbf24;
+    animation: blink 1s infinite;
+  }
+  
+  .terminal-output {
+    margin-top: 16px;
+  }
+  
+  .output-line {
+    margin-bottom: 4px;
+    animation: fadeInUp 0.3s ease-out;
+  }
+  
+  .ai-response {
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
+    border-left: 3px solid #7c3aed;
+    padding: 8px 12px;
+    margin: 8px 0;
+    border-radius: 0 4px 4px 0;
+    animation: aiResponseSlide 0.5s ease-out;
+  }
+  
+  .typing-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .typing-dot {
+    width: 6px;
+    height: 6px;
+    background: #7c3aed;
+    border-radius: 50%;
+    animation: typingPulse 1.4s infinite;
+  }
+  
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  
+  .terminal-toggle {
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+  }
+  
+  .terminal-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+  }
+  
+  .terminal-icon {
+    font-size: 18px;
+  }
+  
+  .terminal-label {
+    font-size: 14px;
+  }
+  
+  /* Animations */
+  @keyframes terminalSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+    }
+    50% {
+      box-shadow: 0 4px 25px rgba(124, 58, 237, 0.5);
+    }
+  }
+  
+  @keyframes aiResponseSlide {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes typingPulse {
+    0%, 60%, 100% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    30% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .terminal-window {
+      width: 90vw;
+      height: 60vh;
+      right: 5vw;
+      bottom: 10px;
+    }
+    
+    .terminal-toggle {
+      padding: 10px 16px;
+    }
+    
+    .terminal-label {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  class CodeIATerminal {
+    constructor() {
+      this.isOpen = false;
+      this.commandHistory = [];
+      this.historyIndex = -1;
+      this.currentCommand = '';
+      this.isProcessing = false;
+      this.aiResponses = [
+        {
+          trigger: ['hola', 'hello', 'hi'],
+          response: '¡Hola! Soy tu asistente IA de CodeIA. Estoy aquí para ayudarte con detección de fake news, validación de datos y simbiosis cerebro-IA. ¿En qué puedo ayudarte hoy?'
+        },
+        {
+          trigger: ['fake news', 'noticias falsas', 'detectar'],
+          response: '🔍 **Sistema de Detección de Fake News Activado**\n\nMi algoritmo puede analizar cualquier contenido y determinar su veracidad con 99.7% de precisión. Simplemente comparte el contenido que quieres validar.'
+        },
+        {
+          trigger: ['cerebro', 'brain', 'simbiosis', 'neural'],
+          response: '🧠 **Interfaz Neural CodeIA**\n\nLa simbiosis cerebro-IA elimina la paranoia de la interacción. Nuestro dispositivo NUBBIN™ lee patrones neuronales y procesa agentes en tiempo real, creando una conexión armoniosa entre mente humana e IA.'
+        },
+        {
+          trigger: ['ayuda', 'help', 'comandos'],
+          response: '📋 **Comandos Disponibles:**\n\n• Escribe cualquier pregunta sobre IA, fake news, o simbiosis cerebro-IA\n• "clear" - Limpiar terminal\n• "exit" - Cerrar terminal\n\n¡Soy tu asistente personal de CodeIA!'
+        },
+        {
+          trigger: ['proyectos', 'projects', 'trabajo'],
+          response: '🚀 **Proyectos CodeIA:**\n\n• Automatización Empresarial con IA\n• Soluciones Inteligentes para Restaurantes\n• Optimización de Recursos Agrícolas\n• Detección de Fake News\n• Interfaz Neural NUBBIN™\n\n¿Te interesa alguno en particular?'
+        },
+        {
+          trigger: ['contacto', 'contact', 'email'],
+          response: '📧 **Contacto CodeIA:**\n\n• Email: realidad@codeia.cl\n• Teléfono: +56 9 3641 8650\n• Ubicación: Chile, América Latina\n• Disponibilidad: 24/7 - Tiempo Real\n\n¡Estamos aquí para ayudarte!'
+        },
+        {
+          trigger: ['tecnología', 'tech', 'algoritmos'],
+          response: '⚡ **Stack Tecnológico CodeIA:**\n\n• **IA/ML:** TensorFlow, PyTorch, OpenAI GPT-4, Anthropic Claude\n• **Frontend:** React, Astro, Tailwind CSS\n• **Backend:** Node.js, Python, Docker\n• **Cloud:** AWS, Google Cloud, Kubernetes\n\n¿Quieres saber más sobre alguna tecnología específica?'
+        }
+      ];
+      
+      this.init();
+    }
+    
+    init() {
+      this.terminal = document.getElementById('terminal-window');
+      this.content = document.getElementById('terminal-content');
+      this.output = document.getElementById('terminal-output');
+      this.commandElement = document.getElementById('current-command');
+      this.cursor = document.getElementById('cursor');
+      this.toggle = document.getElementById('terminal-toggle');
+      
+      this.bindEvents();
+      this.typeWelcome();
+    }
+    
+    bindEvents() {
+      // Toggle terminal
+      this.toggle.addEventListener('click', () => this.toggleTerminal());
+      
+      // Close button
+      document.querySelector('.terminal-button.close').addEventListener('click', () => this.closeTerminal());
+      
+      // Keyboard events
+      document.addEventListener('keydown', (e) => this.handleKeydown(e));
+      
+      // Click outside to close
+      document.addEventListener('click', (e) => {
+        if (this.isOpen && !this.terminal.contains(e.target) && !this.toggle.contains(e.target)) {
+          this.closeTerminal();
+        }
+      });
+    }
+    
+    toggleTerminal() {
+      if (this.isOpen) {
+        this.closeTerminal();
+      } else {
+        this.openTerminal();
+      }
+    }
+    
+    openTerminal() {
+      this.isOpen = true;
+      this.terminal.classList.add('active');
+      this.focusTerminal();
+    }
+    
+    closeTerminal() {
+      this.isOpen = false;
+      this.terminal.classList.remove('active');
+    }
+    
+    focusTerminal() {
+      this.terminal.focus();
+    }
+    
+    handleKeydown(e) {
+      if (!this.isOpen || this.isProcessing) return;
+      
+      if (e.key === 'Enter') {
+        this.executeCommand();
+      } else if (e.key === 'Backspace') {
+        this.currentCommand = this.currentCommand.slice(0, -1);
+        this.updateCommandDisplay();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        this.navigateHistory('up');
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        this.navigateHistory('down');
+      } else if (e.key.length === 1) {
+        this.currentCommand += e.key;
+        this.updateCommandDisplay();
+      }
+    }
+    
+    updateCommandDisplay() {
+      this.commandElement.textContent = this.currentCommand;
+    }
+    
+    navigateHistory(direction) {
+      if (direction === 'up' && this.historyIndex < this.commandHistory.length - 1) {
+        this.historyIndex++;
+        this.currentCommand = this.commandHistory[this.commandHistory.length - 1 - this.historyIndex];
+      } else if (direction === 'down' && this.historyIndex > 0) {
+        this.historyIndex--;
+        this.currentCommand = this.commandHistory[this.commandHistory.length - 1 - this.historyIndex];
+      } else if (direction === 'down' && this.historyIndex === 0) {
+        this.historyIndex = -1;
+        this.currentCommand = '';
+      }
+      this.updateCommandDisplay();
+    }
+    
+    async executeCommand() {
+      const command = this.currentCommand.trim();
+      if (!command) return;
+      
+      this.commandHistory.push(command);
+      this.historyIndex = -1;
+      
+      this.addOutput(`<span class="text-cyan-400">🧠 $ ${command}</span>`);
+      
+      this.isProcessing = true;
+      this.currentCommand = '';
+      this.updateCommandDisplay();
+      
+      // Process command
+      await this.processCommand(command);
+      
+      this.isProcessing = false;
+      this.addNewLine();
+    }
+    
+    async processCommand(command) {
+      const cmd = command.toLowerCase();
+      
+      if (cmd === 'clear') {
+        this.clearOutput();
+        return;
+      } else if (cmd === 'exit' || cmd === 'quit') {
+        this.closeTerminal();
+        return;
+      } else if (cmd === 'help' || cmd === 'ayuda') {
+        this.showHelp();
+        return;
+      }
+      
+      // Show typing indicator
+      this.showTypingIndicator();
+      
+      // Simulate AI processing time
+      await this.delay(1000 + Math.random() * 2000);
+      
+      // Remove typing indicator
+      this.removeTypingIndicator();
+      
+      // Generate AI response
+      const response = this.generateAIResponse(command);
+      this.showAIResponse(response);
+    }
+    
+    showTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'ai-response';
+      typingDiv.id = 'typing-indicator';
+      typingDiv.innerHTML = `
+        <div class="typing-indicator">
+          <span class="text-purple-400">🤖 IA procesando...</span>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      `;
+      this.output.appendChild(typingDiv);
+      this.scrollToBottom();
+    }
+    
+    removeTypingIndicator() {
+      const typingIndicator = document.getElementById('typing-indicator');
+      if (typingIndicator) {
+        typingIndicator.remove();
+      }
+    }
+    
+    generateAIResponse(command) {
+      const cmd = command.toLowerCase();
+      
+      // Check for specific triggers
+      for (const response of this.aiResponses) {
+        for (const trigger of response.trigger) {
+          if (cmd.includes(trigger)) {
+            return response.response;
+          }
+        }
+      }
+      
+      // Default responses for unknown commands
+      const defaultResponses = [
+        '🤖 Interesante pregunta. Como IA especializada en detección de fake news y simbiosis cerebro-IA, puedo ayudarte con cualquier consulta relacionada con estos temas. ¿Puedes ser más específico?',
+        '🧠 Entiendo tu consulta. En CodeIA nos especializamos en validar información real y crear interfaces neurales. ¿Te gustaría saber más sobre nuestros servicios?',
+        '🔍 Tu pregunta me hace pensar en nuestros algoritmos de detección. ¿Estás interesado en validar alguna información específica o aprender sobre la simbiosis cerebro-IA?',
+        '💡 Como asistente IA de CodeIA, puedo ayudarte con detección de fake news, validación de datos, o explicarte cómo funciona la simbiosis cerebro-IA. ¿Qué te interesa más?'
+      ];
+      
+      return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+    }
+    
+    showAIResponse(response) {
+      const responseDiv = document.createElement('div');
+      responseDiv.className = 'ai-response';
+      responseDiv.innerHTML = `
+        <div class="text-green-400 font-bold mb-2">🤖 Respuesta de IA:</div>
+        <div class="text-white whitespace-pre-line">${response}</div>
+      `;
+      this.output.appendChild(responseDiv);
+      this.scrollToBottom();
+    }
+    
+    showHelp() {
+      this.addOutput(`<span class="text-green-400">📋 Comandos disponibles:</span>`);
+      this.addOutput(`<span class="text-yellow-400">•</span> <span class="text-white">Escribe cualquier pregunta sobre IA, fake news, o simbiosis cerebro-IA</span>`);
+      this.addOutput(`<span class="text-yellow-400">•</span> <span class="text-white">clear</span> <span class="text-gray-400">- Limpiar terminal</span>`);
+      this.addOutput(`<span class="text-yellow-400">•</span> <span class="text-white">help</span> <span class="text-gray-400">- Mostrar esta ayuda</span>`);
+      this.addOutput(`<span class="text-yellow-400">•</span> <span class="text-white">exit</span> <span class="text-gray-400">- Cerrar terminal</span>`);
+    }
+    
+    clearOutput() {
+      this.output.innerHTML = '';
+    }
+    
+    addOutput(content) {
+      const line = document.createElement('div');
+      line.className = 'output-line';
+      line.innerHTML = content;
+      this.output.appendChild(line);
+      this.scrollToBottom();
+    }
+    
+    addNewLine() {
+      const line = document.createElement('div');
+      line.className = 'terminal-line';
+      line.innerHTML = `
+        <span class="prompt">🧠 user@codeia:~$</span>
+        <span class="command" id="current-command"></span>
+        <span class="cursor" id="cursor">█</span>
+      `;
+      this.content.appendChild(line);
+      this.commandElement = line.querySelector('#current-command');
+      this.cursor = line.querySelector('#cursor');
+      this.scrollToBottom();
+    }
+    
+    scrollToBottom() {
+      this.content.scrollTop = this.content.scrollHeight;
+    }
+    
+    async typeWelcome() {
+      const welcomeText = [
+        '🤖 Inicializando Neural Interface de CodeIA...',
+        '🧠 Conectando con la matriz de IA...',
+        '🔍 Sistema de detección de fake news activo',
+        '💫 Interfaz cerebro-IA sincronizada',
+        '✨ Terminal listo. Escribe tu prompt para interactuar con la IA.'
+      ];
+      
+      for (let i = 0; i < welcomeText.length; i++) {
+        await this.delay(800);
+        this.addOutput(`<span class="text-blue-400">${welcomeText[i]}</span>`);
+      }
+    }
+    
+    delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+  }
+  
+  // Initialize terminal when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new CodeIATerminal();
+  });
+</script> 

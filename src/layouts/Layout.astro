@@ -2,6 +2,8 @@
 import { SEO } from "astro-seo";
 import Footer from "@components/footer.astro";
 import Navbar from "@components/navbar/navbar.astro";
+import TerminalLanguageSwitcher from "@components/terminal-language-switcher.astro";
+import { getCurrentLanguage } from "../utils/i18n.js";
 // Fonts will be loaded via CDN for better compatibility
 
 export interface Props {
@@ -30,10 +32,13 @@ const {
 const makeTitle = title
   ? title + " | " + "CodeIA - Simbiosis Cerebro-IA"
   : "CodeIA - Validamos tus Datos Reales | Simbiosis Cerebro-IA";
+
+// Get current language for HTML lang attribute
+const currentLang = getCurrentLanguage();
 ---
 
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang={currentLang} data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
@@ -71,7 +76,7 @@ const makeTitle = title
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="CodeIA" />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content={currentLang === 'es' ? 'es_ES' : 'en_US'} />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -140,6 +145,26 @@ const makeTitle = title
     <Navbar />
     <slot />
     <Footer />
+    <TerminalLanguageSwitcher />
+    
+    <!-- Language switching script -->
+    <script>
+      // Update HTML lang attribute when language changes
+      function updateHtmlLang() {
+        const currentLang = localStorage.getItem('codeia-language') || 'es';
+        document.documentElement.lang = currentLang;
+      }
+      
+      // Listen for language changes
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'codeia-language') {
+          updateHtmlLang();
+        }
+      });
+      
+      // Update on page load
+      document.addEventListener('DOMContentLoaded', updateHtmlLang);
+    </script>
     
     <!-- Performance optimizations -->
     <style is:global>

@@ -4,25 +4,26 @@ import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 import Layout from "@layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
+import { t } from "../utils/i18n.js";
 ---
 
-<Layout title="Contact" >
+<Layout title={t('contact')} >
   <Container class="text-slate-600" >
     <Sectionhead>
-      <Fragment slot="title" >Contacto</Fragment>
-      <Fragment slot="desc"><p class="text-violet-500">Estamos aquí para ayudar.</p></Fragment>
+      <Fragment slot="title" >{t('contact')}</Fragment>
+      <Fragment slot="desc"><p class="text-violet-500">{t('contactDescription')}</p></Fragment>
     </Sectionhead>
 
     <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
       <div>
         <!-- <h2 class="font-medium text-2xl text-gray-400">codeIA Spa</h2> -->
         <p class="text-lg leading-relaxed text-pink-400 mt-3">
-          Te responderemos en menos de 24 horas.
+          {t('contactResponse')}
         </p>
         <div class="mt-5">
           <div class="flex items-center mt-2 space-x-2 text-gray-300">
             <span class="text-gray-300 w-4 h-4">📍</span>
-            <span>ANTONIO BELLET 193 OF 1210, Providencia</span>
+            <span>{t('contactAddress')}</span>
           </div><div class="flex items-center mt-2 space-x-2 text-gray-400">
             <span class="text-gray-600 w-4 h-4">✉️</span><a
               href="mailto:contacto@codeia.cl"

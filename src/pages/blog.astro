@@ -4,6 +4,7 @@ import { Picture } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
+import { t } from "../utils/i18n.js";
 
 // Filter blog entries with 'draft: false' & date before current date
 const publishedBlogEntries = await getCollection("blog", ({ data }) => {
@@ -16,12 +17,12 @@ publishedBlogEntries.sort(function (a, b) {
 });
 ---
 
-<Layout title="Blog">
+<Layout title={t('blog')}>
   <Container class="text-slate-300">
     <Sectionhead>
-      <Fragment slot="title">Nuestro blog</Fragment>
+      <Fragment slot="title">{t('blog')}</Fragment>
       <Fragment slot="desc">
-        <p class="text-pink-400">Escribimos sobre nuestros proyectos tecnológicos y los pensamientos que rondan por nuestra mente.</p>
+        <p class="text-pink-400">{t('blogDescription')}</p>
       </Fragment>
     </Sectionhead>
     <main class="mt-16">

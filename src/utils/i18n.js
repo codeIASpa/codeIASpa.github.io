@@ -70,7 +70,26 @@ export const translations = {
     copyright: '© 2024 CodeIA. Todos los derechos reservados.',
     privacy: 'Privacidad Neural',
     terms: 'Términos de Simbiosis',
-    cookies: 'Cookies Cerebrales'
+    cookies: 'Cookies Cerebrales',
+    
+    // Blog
+    blogDescription: 'Escribimos sobre nuestros proyectos tecnológicos y los pensamientos que rondan por nuestra mente.',
+    
+    // Contact
+    contactDescription: 'Estamos aquí para ayudar.',
+    contactResponse: 'Te responderemos en menos de 24 horas.',
+    contactAddress: 'ANTONIO BELLET 193 OF 1210, Providencia',
+    
+    // Features
+    featuresBadge: 'Servicios Futuristas',
+    featuresTitle1: 'Más Allá de la',
+    featuresTitle2: 'Realidad',
+    featuresDescription: 'Construimos el puente entre la mente humana y la inteligencia artificial, creando experiencias que trascienden la realidad convencional y eliminan las barreras psicológicas de la interacción cerebro-IA.',
+    explore: 'Explorar',
+    featuresCTA: '¿Listo para Transcender la Realidad?',
+    featuresCTADescription: 'Descubre cómo la simbiosis cerebro-IA puede amplificar tu conciencia y eliminar la paranoia de la interacción con inteligencia artificial.',
+    validateReality: 'Validar Realidad',
+    startConversation: 'Iniciar Conversación'
   },
   
   en: {
@@ -130,12 +149,39 @@ export const translations = {
     copyright: '© 2024 CodeIA. All rights reserved.',
     privacy: 'Neural Privacy',
     terms: 'Symbiosis Terms',
-    cookies: 'Brain Cookies'
+    cookies: 'Brain Cookies',
+    
+    // Blog
+    blogDescription: 'We write about our technological projects and the thoughts that run through our minds.',
+    
+    // Contact
+    contactDescription: 'We are here to help.',
+    contactResponse: 'We will respond within 24 hours.',
+    contactAddress: 'ANTONIO BELLET 193 OF 1210, Providencia',
+    
+    // Features
+    featuresBadge: 'Futuristic Services',
+    featuresTitle1: 'Beyond',
+    featuresTitle2: 'Reality',
+    featuresDescription: 'We build the bridge between the human mind and artificial intelligence, creating experiences that transcend conventional reality and eliminate the psychological barriers of brain-AI interaction.',
+    explore: 'Explore',
+    featuresCTA: 'Ready to Transcend Reality?',
+    featuresCTADescription: 'Discover how brain-AI symbiosis can amplify your consciousness and eliminate the paranoia of interaction with artificial intelligence.',
+    validateReality: 'Validate Reality',
+    startConversation: 'Start Conversation'
   }
 };
 
 // Función para obtener el idioma actual
 export function getCurrentLanguage() {
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('codeia-language') || 'es';
+  }
+  return 'es'; // Default language for server-side rendering
+}
+
+// Función para obtener el idioma actual del cliente (solo para uso en el navegador)
+export function getClientLanguage() {
   if (typeof window !== 'undefined') {
     return localStorage.getItem('codeia-language') || 'es';
   }

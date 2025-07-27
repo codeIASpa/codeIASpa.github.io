@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Language Switching - CodeIA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .language-selector {
+            margin: 20px 0;
+            padding: 20px;
+            background: #1e293b;
+            border-radius: 10px;
+        }
+        .language-option {
+            margin: 10px;
+            padding: 10px 20px;
+            background: #334155;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        .language-option:hover {
+            background: #475569;
+        }
+        .current-language {
+            font-weight: bold;
+            color: #ec4899;
+        }
+        .test-content {
+            margin: 20px 0;
+            padding: 20px;
+            background: #1e293b;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Test de Cambio de Idioma - CodeIA</h1>
+        
+        <div class="language-selector">
+            <h2>Selector de Idioma</h2>
+            <p>Idioma actual: <span id="current-lang" class="current-language">Español</span></p>
+            <button class="language-option" onclick="changeLanguage('es')">🇪🇸 Español</button>
+            <button class="language-option" onclick="changeLanguage('en')">🇺🇸 English</button>
+        </div>
+
+        <div class="test-content">
+            <h2>Contenido de Prueba</h2>
+            <p>Este es un contenido de prueba para verificar que el cambio de idioma funciona correctamente.</p>
+            <p>Idioma guardado en localStorage: <span id="stored-lang">No definido</span></p>
+        </div>
+
+        <div class="test-content">
+            <h2>Traducciones de Prueba</h2>
+            <p>Proyectos: <span id="test-projects">Proyectos</span></p>
+            <p>Nosotros: <span id="test-about">Nosotros</span></p>
+            <p>Blog: <span id="test-blog">Blog</span></p>
+            <p>Contacto: <span id="test-contact">Contacto</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Simulación del sistema de traducciones
+        const translations = {
+            es: {
+                projects: 'Proyectos',
+                about: 'Nosotros',
+                blog: 'Blog',
+                contact: 'Contacto',
+                currentLanguage: 'Español'
+            },
+            en: {
+                projects: 'Projects',
+                about: 'About',
+                blog: 'Blog',
+                contact: 'Contact',
+                currentLanguage: 'English'
+            }
+        };
+
+        function getCurrentLanguage() {
+            return localStorage.getItem('codeia-language') || 'es';
+        }
+
+        function changeLanguage(lang) {
+            localStorage.setItem('codeia-language', lang);
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const currentLang = getCurrentLanguage();
+            const langData = translations[currentLang];
+            
+            // Actualizar idioma actual
+            document.getElementById('current-lang').textContent = langData.currentLanguage;
+            document.getElementById('stored-lang').textContent = currentLang;
+            
+            // Actualizar traducciones de prueba
+            document.getElementById('test-projects').textContent = langData.projects;
+            document.getElementById('test-about').textContent = langData.about;
+            document.getElementById('test-blog').textContent = langData.blog;
+            document.getElementById('test-contact').textContent = langData.contact;
+            
+            // Actualizar el atributo lang del HTML
+            document.documentElement.lang = currentLang;
+        }
+
+        // Inicializar al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDisplay();
+        });
+    </script>
+</body>
+</html> 
