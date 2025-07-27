@@ -14,6 +14,7 @@ fi
 SERVER_IP="${SERVER_IP:-201.148.104.27}"
 FTP_USER="${FTP_USER:-codeiacl}"
 FTP_PASS="${FTP_PASSWORD:-849yAVz.f9I@fG}"
+FTP_PORT="${FTP_PORT:-21}"
 REMOTE_DIR="${REMOTE_DIR:-/public_html}"
 
 # Colores
@@ -77,7 +78,7 @@ set ftp:max-retries 3
 set net:timeout 30
 set net:max-retries 3
 
-open -u $FTP_USER,$FTP_PASS $SERVER_IP
+open -u $FTP_USER,$FTP_PASS -p $FTP_PORT $SERVER_IP
 cd $REMOTE_DIR
 mirror --reverse --delete --verbose --parallel=3 dist/ .
 bye

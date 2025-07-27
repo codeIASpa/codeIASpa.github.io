@@ -15,7 +15,8 @@
     "deploy:robust": "./deploy-robust.sh",
     "setup:env": "./setup-env.sh",
     "optimize": "./optimize-build.sh",
-    "build:optimized": "npm run build && npm run optimize"
+    "build:optimized": "npm run build && npm run optimize",
+    "test:ftp": "./test-ftp.sh"
   },
   "dependencies": {
     "@astrojs/mdx": "^3.0.1",
