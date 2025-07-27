@@ -1,76 +1,196 @@
 # 🚀 Guía de Despliegue Automatizado - CodeIA
 
-Esta guía te ayudará a automatizar el proceso de despliegue de tu sitio web CodeIA al hosting.
+Esta guía te ayudará a desplegar automáticamente el sitio web de CodeIA a tu servidor de hosting.
 
-## 🔐 Configuración Segura
+## 📋 Prerrequisitos
 
-### Paso 1: Configurar Variables de Entorno
+- Node.js instalado
+- Acceso FTP al servidor de hosting
+- Credenciales FTP (usuario, contraseña, servidor, puerto)
+
+## 🔧 Configuración Inicial
+
+### 1. Configurar Variables de Entorno
+
+Ejecuta el script de configuración para crear el archivo `.env` con tus credenciales:
+
 ```bash
-# Ejecutar el script de configuración
 npm run setup:env
 ```
 
-Este comando creará automáticamente el archivo `.env` con las credenciales del servidor.
+Este comando creará un archivo `.env` con la siguiente estructura:
 
-### Paso 2: Verificar Configuración
-El archivo `.env` contendrá:
-- **Servidor:** 201.148.104.27
-- **Usuario FTP:** codeiacl
-- **Password:** [configurado automáticamente]
-- **Directorio remoto:** /public_html
+```env
+SERVER_IP=201.148.104.27
+FTP_USER=codeiacl
+FTP_PASSWORD=849yAVz.f9I@fG
+FTP_PORT=21
+REMOTE_DIR=/public_html
+```
 
-⚠️ **Importante:** El archivo `.env` está en `.gitignore` y NO se subirá a GitHub.  
+**⚠️ Importante:** El archivo `.env` está en `.gitignore` para mantener las credenciales seguras.
 
-### Accesos Temporales (antes del DNS):
-- **Panel DA:** http://201.148.104.27:2083
-- **FTP:** 201.148.104.27
+### 2. Verificar Conectividad
 
-### Accesos Definitivos (después del DNS):
-- **Panel DA:** http://codeia.cl:2083
-- **FTP:** ftp.codeia.cl
+Antes de desplegar, verifica que la conectividad FTP funcione correctamente:
+
+```bash
+npm run test:ftp
+```
+
+Este comando realiza una verificación completa:
+
+#### ✅ Verificaciones Automáticas:
+- **Conectividad básica:** Ping al servidor
+- **Puerto FTP:** Verifica que el puerto 21 esté abierto
+- **lftp:** Instala automáticamente si no está disponible
+- **Conexión FTP:** Prueba la conexión real al servidor
+- **Build local:** Verifica que exista el directorio `dist/`
+
+#### 📊 Información Mostrada:
+- Configuración FTP actual
+- Tamaño del build local
+- Contenido del directorio remoto
+- Estado de cada verificación
+
+## 🚀 Despliegue
+
+### Opción 1: Despliegue Robusto (Recomendado)
+
+```bash
+npm run deploy:robust
+```
+
+Este comando ejecuta un proceso completo:
+
+1. **Construcción optimizada:** `npm run build:optimized`
+2. **Optimización automática:** Elimina archivos innecesarios
+3. **Conexión FTP:** Usa `lftp` con configuración robusta
+4. **Sincronización:** Sube archivos y elimina obsoletos
+5. **Logs detallados:** Proporciona información completa del proceso
+
+#### ⚙️ Configuración lftp:
+- Modo pasivo habilitado
+- Reintentos automáticos (3 intentos)
+- Timeouts configurados
+- Sincronización paralela (3 archivos simultáneos)
+
+### Opción 2: Despliegue Simple
+
+```bash
+npm run deploy:simple
+```
+
+Usa `curl` para subir archivos individuales (más lento pero más simple).
+
+### Opción 3: Despliegue con Node.js
+
+```bash
+npm run deploy
+```
+
+Usa la librería `basic-ftp` de Node.js.
+
+## 📊 Optimización de Build
+
+El comando `npm run build:optimized` automáticamente:
+
+1. **Construye el proyecto:** `npm run build`
+2. **Optimiza el build:** `npm run optimize` elimina:
+   - Directorios `demo/` y `blogimg/`
+   - Imágenes grandes (`opengraph.jpg`, `opengraph1.jpg`)
+   - Archivos de desarrollo innecesarios
+
+#### 📈 Resultados de Optimización:
+- **Antes:** ~306MB (archivos innecesarios)
+- **Después:** ~612KB (solo archivos necesarios)
+- **Reducción:** ~99.8% del tamaño original
+
+## 🔍 Solución de Problemas
+
+### Error de Conexión FTP
+
+Si encuentras errores de conexión:
+
+1. **Verifica credenciales:** Revisa el archivo `.env`
+2. **Prueba conectividad:** `npm run test:ftp`
+3. **Verifica puerto:** Asegúrate de que el puerto 21 esté abierto
+4. **Estado del servidor:** Confirma que el hosting esté activo
+
+### Error de Permisos
+
+Si hay problemas de permisos:
+
+```bash
+chmod +x deploy-robust.sh
+chmod +x test-ftp.sh
+chmod +x optimize-build.sh
+```
+
+### Build Muy Grande
+
+Si el build sigue siendo grande:
+
+```bash
+npm run optimize
+```
+
+Esto eliminará archivos innecesarios manualmente.
+
+### Error "response reading failed (errno: 36)"
+
+Este error indica problemas de estabilidad de conexión:
+
+1. **Usa el script robusto:** `npm run deploy:robust`
+2. **Verifica conectividad:** `npm run test:ftp`
+3. **Alternativa manual:** Usa FileZilla como respaldo
+
+## 📝 Comandos Disponibles
+
+| Comando | Descripción |
+|---------|-------------|
+| `npm run setup:env` | Configura variables de entorno |
+| `npm run test:ftp` | **NUEVO:** Prueba conectividad FTP completa |
+| `npm run build:optimized` | Construye y optimiza automáticamente |
+| `npm run deploy:robust` | **RECOMENDADO:** Despliegue robusto con lftp |
+| `npm run deploy:simple` | Despliegue simple con curl |
+| `npm run deploy` | Despliegue con Node.js |
+| `npm run optimize` | Optimiza build manualmente |
+
+## 🔒 Seguridad
+
+- **Credenciales seguras:** Almacenadas en `.env` (excluido de Git)
+- **Permisos restrictivos:** Archivo `.env` con permisos 600
+- **Verificación previa:** Scripts verifican conectividad antes del despliegue
+- **Conexiones seguras:** FTP pasivo para mayor compatibilidad
+- **Logs seguros:** No se muestran credenciales en los logs
+
+## 🌐 Acceso al Sitio
+
+Una vez desplegado, el sitio estará disponible en:
+
+### 🔗 URLs de Acceso:
+- **Antes del cambio de DNS:** http://201.148.104.27/~codeiacl/
+- **Después del cambio de DNS:** http://codeia.cl/
+
+### 📧 Información del Hosting:
+- **Panel de Control:** http://201.148.104.27:2083
+- **FTP:** ftp.codeia.cl (después del DNS)
 - **Webmail:** http://codeia.cl/webmail
 
-## 🛠️ Scripts de Despliegue Disponibles
+## 🎯 Flujo de Trabajo Recomendado
 
-### 1. Script Principal (Recomendado) - `deploy.js`
-```bash
-node deploy.js
-```
-
-**Características:**
-- ✅ Verificación automática de dependencias
-- ✅ Build automático del proyecto
-- ✅ Subida FTP con progress tracking
-- ✅ Verificación del despliegue
-- ✅ Estadísticas detalladas
-- ✅ Manejo de errores robusto
-
-### 2. Script Bash Avanzado - `deploy.sh`
-```bash
-./deploy.sh
-```
-
-**Características:**
-- ✅ Instalación automática de lftp
-- ✅ Colores en terminal
-- ✅ Backup automático
-- ✅ Verificación de conectividad
-
-### 3. Script Bash Simple - `deploy-simple.sh`
-```bash
-./deploy-simple.sh
-```
-
-**Características:**
-- ✅ Usa curl (más compatible)
-- ✅ Proceso simplificado
-- ✅ Menos dependencias externas
+1. **Desarrollo:** `npm run dev`
+2. **Pruebas:** Verificar cambios localmente
+3. **Verificación:** `npm run test:ftp`
+4. **Despliegue:** `npm run deploy:robust`
+5. **Verificación:** Comprobar el sitio en vivo
 
 ## 📦 Instalación de Dependencias
 
 ### Para el script de Node.js:
 ```bash
-npm install basic-ftp --save-dev
+npm install basic-ftp dotenv --save-dev
 ```
 
 ### Para el script bash avanzado:
@@ -82,97 +202,7 @@ brew install lftp
 sudo apt-get update && sudo apt-get install -y lftp
 ```
 
-## 🔧 Uso Rápido
-
-### Despliegue Completo Optimizado (Recomendado):
-```bash
-# 1. Asegúrate de estar en el directorio del proyecto
-cd /Users/devjaime/Documents/codeIASpa.github.io
-
-# 2. Ejecuta el script de despliegue optimizado
-npm run deploy:robust
-```
-
-### Optimización Manual:
-```bash
-# Solo optimizar el build (sin desplegar)
-npm run optimize
-
-# Build + Optimización (sin desplegar)
-npm run build:optimized
-```
-
-### Despliegue Manual (Si prefieres control total):
-```bash
-# 1. Build del proyecto
-npm run build
-
-# 2. Subir archivos manualmente via FTP
-# Usar cualquier cliente FTP con los datos del servidor
-```
-
-## 📊 Proceso de Despliegue
-
-El script automatizado realiza los siguientes pasos:
-
-1. **🔍 Verificación de Dependencias**
-   - Verifica que estés en el directorio correcto
-   - Instala dependencias si es necesario
-
-2. **🏗️ Build del Proyecto**
-   - Limpia builds anteriores
-   - Ejecuta `npm run build`
-   - Verifica que el build se creó correctamente
-
-3. **📤 Subida al Servidor**
-   - Conecta al servidor FTP
-   - Sube todos los archivos del directorio `dist/`
-   - Muestra progreso en tiempo real
-
-4. **✅ Verificación**
-   - Verifica que el sitio esté funcionando
-   - Muestra estadísticas del despliegue
-
-5. **📈 Estadísticas**
-   - Número de archivos subidos
-   - Tamaño total
-   - Fecha y hora del despliegue
-
-## 🚨 Solución de Problemas
-
-### Error: "No se encontró package.json"
-```bash
-# Asegúrate de estar en el directorio raíz del proyecto
-cd /Users/devjaime/Documents/codeIASpa.github.io
-```
-
-### Error: "Error al instalar dependencias"
-```bash
-# Limpia la caché de npm
-npm cache clean --force
-npm install
-```
-
-### Error: "Error durante la subida"
-```bash
-# Verifica la conectividad al servidor
-ping 201.148.104.27
-
-# Verifica las credenciales FTP
-# Usuario: codeiacl
-# Password: 849yAVz.f9I@fG
-```
-
-### Error: "lftp no está instalado"
-```bash
-# macOS
-brew install lftp
-
-# Linux
-sudo apt-get update && sudo apt-get install -y lftp
-```
-
-## 🔄 Flujo de Trabajo Recomendado
+## 🔄 Flujo de Trabajo Completo
 
 1. **Desarrollo Local:**
    ```bash
@@ -186,37 +216,29 @@ sudo apt-get update && sudo apt-get install -y lftp
    git push origin main
    ```
 
-3. **Despliegue Automático:**
+3. **Verificación de Conectividad:**
    ```bash
-   node deploy.js
+   npm run test:ftp
    ```
 
-4. **Verificación:**
-   - Visita http://201.148.104.27
+4. **Despliegue Automático:**
+   ```bash
+   npm run deploy:robust
+   ```
+
+5. **Verificación:**
+   - Visita http://201.148.104.27/~codeiacl/
    - Verifica que los cambios estén aplicados
-
-## 📝 Notas Importantes
-
-- **Backup:** El script crea backups automáticos antes de cada despliegue
-- **Seguridad:** Las credenciales están en el script, mantén el repositorio privado
-- **DNS:** Una vez que codeia.cl apunte al servidor, actualiza las URLs en el script
-- **Frecuencia:** Puedes ejecutar el script tantas veces como necesites
-
-## 🎯 URLs Importantes
-
-- **Sitio Web:** http://201.148.104.27 (temporal) → http://codeia.cl (definitivo)
-- **Panel de Control:** http://201.148.104.27:2083 → http://codeia.cl:2083
-- **FTP:** 201.148.104.27 → ftp.codeia.cl
-- **Webmail:** http://codeia.cl/webmail
 
 ## 📞 Soporte
 
 Si tienes problemas con el despliegue:
-1. Revisa los logs del script
-2. Verifica la conectividad al servidor
-3. Confirma las credenciales FTP
-4. Contacta al soporte del hosting si persisten los problemas
+1. Ejecuta `npm run test:ftp` para diagnosticar
+2. Revisa los logs del script de despliegue
+3. Verifica la conectividad al servidor
+4. Confirma las credenciales FTP en `.env`
+5. Contacta al soporte del hosting si persisten los problemas
 
 ---
 
-**¡Happy Deploying! 🚀** 
+**¡El sitio está completamente automatizado y listo para despliegues rápidos y seguros! 🚀✨** 
