@@ -89,7 +89,36 @@ export const translations = {
     featuresCTA: '¿Listo para Transcender la Realidad?',
     featuresCTADescription: 'Descubre cómo la simbiosis cerebro-IA puede amplificar tu conciencia y eliminar la paranoia de la interacción con inteligencia artificial.',
     validateReality: 'Validar Realidad',
-    startConversation: 'Iniciar Conversación'
+    startConversation: 'Iniciar Conversación',
+    
+    // Projects
+    projectsBadge: 'Proyectos Destacados de Innovación Tecnológica',
+    projectsTitle: 'Proyectos Destacados de Innovación Tecnológica',
+    projectsDescription: 'Explora algunos de los proyectos en los que estamos trabajando activamente en CodeIA, cada uno con un enfoque técnico sólido, animaciones envolventes y un flujo visual optimizado para comunicar ideas complejas de forma clara y atractiva:',
+    project1Title: 'Verificador de Fake News para LLMs',
+    project1Objective: 'Objetivo:',
+    project1ObjectiveText: 'Diseñar un sistema de validación de datos que permita a los modelos de lenguaje evitar alucinaciones (alucinaciones de IA) al generar respuestas.',
+    project1Technology: 'Tecnología:',
+    project1TechnologyText: 'LangChain, LlamaIndex, PostgreSQL, RAG (Retrieval Augmented Generation).',
+    project1Animation: 'Animación: flujo de verificación desde Twitter/Perplexity → Análisis semántico → Confirmación en fuentes oficiales → Respuesta segura del LLM.',
+    project1AnimationPlaceholder: 'Flujo de Verificación de Fake News',
+    project2Title: 'FlippyApp: Aseo y Reparaciones para Propiedades Airbnb',
+    project2Objective: 'Objetivo:',
+    project2ObjectiveText: 'Automatizar y mejorar la coordinación de limpieza y mantenimiento en propiedades de arriendo temporal.',
+    project2Technology: 'Tecnología:',
+    project2TechnologyText: 'Flutter, Firebase, Python backend, flujos MCP (Multi Component Programming).',
+    project2Animation: 'Animación: Desde la salida del huésped → Checklist inteligente → Coordinación con personal de aseo y mantención → Reporte al anfitrión.',
+    project2AnimationPlaceholder: 'Flujo de Gestión Airbnb',
+    project3Title: 'Nubbin / Neuralink: Interfaz Conceptual Hombre-IA',
+    project3Objective: 'Objetivo:',
+    project3ObjectiveText: 'Investigamos y prototipamos un dispositivo conceptual de interacción directa entre humanos e inteligencia artificial, inspirado en tecnologías como Neuralink y el episodio Black Mirror - "Nosedive".',
+    project3Status: 'Estado:',
+    project3StatusText: 'Fase de diseño conceptual y UX conversacional.',
+    project3Animation: 'Animación: Interacción natural usuario-dispositivo con visualización de flujos neuronales/decisión contextual.',
+    project3AnimationPlaceholder: 'Interfaz Neural Conceptual',
+    projectsCTA: 'Cada uno de estos proyectos está orientado a resolver problemas reales y a empujar los límites de la integración entre software, IA y experiencia de usuario.',
+    projectsContactButton: 'Contactar',
+    projectsBlogButton: 'Ver Blog'
   },
   
   en: {
@@ -168,7 +197,36 @@ export const translations = {
     featuresCTA: 'Ready to Transcend Reality?',
     featuresCTADescription: 'Discover how brain-AI symbiosis can amplify your consciousness and eliminate the paranoia of interaction with artificial intelligence.',
     validateReality: 'Validate Reality',
-    startConversation: 'Start Conversation'
+    startConversation: 'Start Conversation',
+    
+    // Projects
+    projectsBadge: 'Featured Technology Innovation Projects',
+    projectsTitle: 'Featured Technology Innovation Projects',
+    projectsDescription: 'Explore some of the projects we are actively working on at CodeIA, each with a solid technical approach, engaging animations and an optimized visual flow to communicate complex ideas clearly and attractively:',
+    project1Title: 'Fake News Verifier for LLMs',
+    project1Objective: 'Objective:',
+    project1ObjectiveText: 'Design a data validation system that allows language models to avoid hallucinations (AI hallucinations) when generating responses.',
+    project1Technology: 'Technology:',
+    project1TechnologyText: 'LangChain, LlamaIndex, PostgreSQL, RAG (Retrieval Augmented Generation).',
+    project1Animation: 'Animation: verification flow from Twitter/Perplexity → Semantic analysis → Official source confirmation → Safe LLM response.',
+    project1AnimationPlaceholder: 'Fake News Verification Flow',
+    project2Title: 'FlippyApp: Cleaning and Repairs for Airbnb Properties',
+    project2Objective: 'Objective:',
+    project2ObjectiveText: 'Automate and improve the coordination of cleaning and maintenance in temporary rental properties.',
+    project2Technology: 'Technology:',
+    project2TechnologyText: 'Flutter, Firebase, Python backend, MCP (Multi Component Programming) flows.',
+    project2Animation: 'Animation: From guest departure → Smart checklist → Coordination with cleaning and maintenance staff → Report to host.',
+    project2AnimationPlaceholder: 'Airbnb Management Flow',
+    project3Title: 'Nubbin / Neuralink: Conceptual Human-AI Interface',
+    project3Objective: 'Objective:',
+    project3ObjectiveText: 'We research and prototype a conceptual device for direct interaction between humans and artificial intelligence, inspired by technologies like Neuralink and the Black Mirror episode - "Nosedive".',
+    project3Status: 'Status:',
+    project3StatusText: 'Conceptual design phase and conversational UX.',
+    project3Animation: 'Animation: Natural user-device interaction with visualization of neural/contextual decision flows.',
+    project3AnimationPlaceholder: 'Conceptual Neural Interface',
+    projectsCTA: 'Each of these projects is oriented towards solving real problems and pushing the limits of integration between software, AI and user experience.',
+    projectsContactButton: 'Contact',
+    projectsBlogButton: 'View Blog'
   }
 };
 
