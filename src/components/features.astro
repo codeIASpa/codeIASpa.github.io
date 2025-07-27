@@ -1,69 +1,144 @@
 ---
-// @ts-ignore
 import { Icon } from "astro-icon/components";
 
 const features = [
   {
-    title: "Bring Your Own Framework",
-    description:
-      "Build your site using React, Svelte, Vue, Preact, web components, or just plain ol' HTML + JavaScript.",
-    icon: "bx:bxs-briefcase",
+    title: "Detección de Fake News",
+    description: "Sistemas avanzados que analizan patrones neuronales para identificar información falsa en tiempo real, protegiendo tu mente de la desinformación.",
+    icon: "bx:bxs-shield",
+    color: "from-purple-500 to-pink-500",
+    bgColor: "bg-purple-500/10",
+    borderColor: "border-purple-500/20"
   },
   {
-    title: "100% Static HTML, No JS",
-    description:
-      "Astro renders your entire page to static HTML, removing all JavaScript from your final build by default.",
-    icon: "bx:bxs-window-alt",
+    title: "Interacción Cerebro-IA",
+    description: "Dispositivos inteligentes que leen patrones neuronales y procesan agentes cognitivos en tiempo real, creando una simbiosis perfecta entre mente y máquina.",
+    icon: "bx:bxs-brain",
+    color: "from-blue-500 to-cyan-500",
+    bgColor: "bg-blue-500/10",
+    borderColor: "border-blue-500/20"
   },
   {
-    title: "On-Demand Components",
-    description:
-      "Need some JS? Astro can automatically hydrate interactive components when they become visible on the page.  ",
-    icon: "bx:bxs-data",
+    title: "Psicología de Conversación",
+    description: "Algoritmos que eliminan la paranoia de la interacción con IA, creando experiencias conversacionales naturales y terapéuticas que sanan la mente.",
+    icon: "bx:bxs-message-rounded-dots",
+    color: "from-green-500 to-emerald-500",
+    bgColor: "bg-green-500/10",
+    borderColor: "border-green-500/20"
   },
   {
-    title: "Broad Integration",
-    description:
-      "Astro supports TypeScript, Scoped CSS, CSS Modules, Sass, Tailwind, Markdown, MDX, and any other npm packages.",
-    icon: "bx:bxs-bot",
+    title: "Validación de Realidad",
+    description: "Sistemas que distinguen entre realidad y simulación, validando datos en múltiples dimensiones para mantener tu conexión con la verdad objetiva.",
+    icon: "bx:bxs-check-circle",
+    color: "from-orange-500 to-red-500",
+    bgColor: "bg-orange-500/10",
+    borderColor: "border-orange-500/20"
   },
   {
-    title: "SEO Enabled",
-    description:
-      "Automatic sitemaps, RSS feeds, pagination and collections take the pain out of SEO and syndication. It just works!",
-    icon: "bx:bxs-file-find",
+    title: "Procesamiento de Agentes",
+    description: "Arquitectura de agentes inteligentes que procesan información como extensiones de tu conciencia, amplificando tus capacidades cognitivas.",
+    icon: "bx:bxs-network-chart",
+    color: "from-indigo-500 to-purple-500",
+    bgColor: "bg-indigo-500/10",
+    borderColor: "border-indigo-500/20"
   },
   {
-    title: "Community",
-    description:
-      "Astro is an open source project powered by hundreds of contributors making thousands of individual contributions.",
-    icon: "bx:bxs-user",
-  },
+    title: "Simbiosis Digital",
+    description: "Creación de ecosistemas donde humanos e IA coexisten en armonía, eliminando barreras psicológicas y creando nuevas formas de conciencia colectiva.",
+    icon: "bx:bxs-user-check",
+    color: "from-pink-500 to-rose-500",
+    bgColor: "bg-pink-500/10",
+    borderColor: "border-pink-500/20"
+  }
 ];
 ---
 
-<!-- <div class="mt-16 md:mt-0">
-  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
-    Everything you need to start a website
-  </h2>
-  <p class="text-lg mt-4 text-slate-600">
-    Astro comes batteries included. It takes the best parts of state-of-the-art
-    tools and adds its own innovations.
-  </p>
-</div> -->
+<div class="relative py-20">
+  <!-- Background effects -->
+  <div class="absolute inset-0 bg-gradient-to-b from-slate-900/50 to-transparent"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full text-sm text-purple-300 mb-6">
+        <span class="w-4 h-4">🧠</span>
+        <span>Servicios Futuristas</span>
+      </div>
+      
+      <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight mb-6">
+        <span class="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+          Más Allá de la
+        </span>
+        <br />
+        <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          Realidad
+        </span>
+      </h2>
+      
+      <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+        Construimos el puente entre la mente humana y la inteligencia artificial, 
+        creando experiencias que trascienden la realidad convencional y eliminan 
+        las barreras psicológicas de la interacción cerebro-IA.
+      </p>
+    </div>
 
-<!-- <div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
-  {
-    features.map((item) => (
-      <div class="flex gap-4 items-start">
-        <div class="mt-1 bg-black rounded-full  p-2 w-8 h-8 shrink-0">
-          <Icon class="text-white" name={item.icon} />
-        </div>
-        <div>
-          <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
-          <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        features.map((item) => (
+          <div class={`group relative p-8 rounded-2xl border ${item.borderColor} ${item.bgColor} hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10`}>
+            <!-- Neural network effect -->
+            <div class={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
+            
+            <div class="relative z-10">
+              <div class={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${item.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <span class="w-8 h-8 text-white">🧠</span>
+              </div>
+              
+              <h3 class="text-xl font-bold text-white mb-4 group-hover:text-purple-300 transition-colors duration-300">
+                {item.title}
+              </h3>
+              
+              <p class="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors duration-300">
+                {item.description}
+              </p>
+              
+              <!-- Neural indicator -->
+              <div class="mt-6 flex items-center text-purple-400 group-hover:text-purple-300 transition-colors duration-300">
+                <span class="text-sm font-semibold">Explorar</span>
+                <span class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300">➡️</span>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Call to action section -->
+    <div class="mt-20 text-center">
+      <div class="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl p-8 md:p-12">
+        <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+          ¿Listo para Transcender la Realidad?
+        </h3>
+        <p class="text-slate-400 text-lg mb-8 max-w-2xl mx-auto">
+          Descubre cómo la simbiosis cerebro-IA puede amplificar tu conciencia y eliminar 
+          la paranoia de la interacción con inteligencia artificial.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://api.whatsapp.com/send?phone=56936418650"
+            target="_blank"
+            class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25"
+            rel="noopener">
+            <span class="w-5 h-5">🧠</span>
+            Validar Realidad
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center gap-2 border-2 border-purple-500/50 text-purple-300 hover:bg-purple-500/10 px-8 py-4 rounded-lg font-semibold transition-all duration-300">
+            <span class="w-5 h-5">💬</span>
+            Iniciar Conversación
+          </a>
         </div>
       </div>
-    ))
-  }
-</div> -->
+    </div>
+  </div>
+</div>

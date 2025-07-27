@@ -1,0 +1,115 @@
+---
+import { Icon } from "astro-icon/components";
+
+const testimonials = [
+  {
+    name: "Dr. Elena Martínez",
+    position: "Neurocientífica, Instituto de IA Cognitiva",
+    content: "CodeIA revolucionó nuestra investigación. Su sistema de detección de fake news basado en patrones neuronales alcanzó una precisión del 99.7%. La interacción cerebro-IA que desarrollaron eliminó completamente la paranoia de nuestros sujetos de estudio.",
+    rating: 5,
+    avatar: "🧠"
+  },
+  {
+    name: "Alex Chen",
+    position: "CEO, RealityCheck Technologies",
+    content: "Los dispositivos de validación de realidad que implementaron nos permitieron distinguir entre información verdadera y simulada en tiempo real. Nuestros usuarios reportaron una reducción del 85% en ansiedad relacionada con la IA.",
+    rating: 5,
+    avatar: "👨‍💻"
+  },
+  {
+    name: "Dr. Sofia Ramírez",
+    position: "Psicóloga Digital, MindTech Labs",
+    content: "La psicología de conversación IA de CodeIA transformó nuestro enfoque terapéutico. Los algoritmos que desarrollaron crean experiencias conversacionales que sanan la mente y eliminan las barreras psicológicas con la IA.",
+    rating: 5,
+    avatar: "👩‍⚕️"
+  }
+];
+---
+
+<div class="relative py-20">
+  <!-- Background effects -->
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full text-sm text-purple-300 mb-6">
+        <span class="w-4 h-4">🧠</span>
+        <span>Casos de Transcendencia</span>
+      </div>
+      
+      <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight mb-6">
+        <span class="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+          Testimonios de la
+        </span>
+        <br />
+        <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          Nueva Realidad
+        </span>
+      </h2>
+      
+      <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+        Expertos en neurociencia, psicología digital y tecnología de validación de realidad 
+        comparten sus experiencias con la simbiosis cerebro-IA de CodeIA.
+      </p>
+    </div>
+
+    <!-- Testimonials grid -->
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      {
+        testimonials.map((testimonial) => (
+          <div class="group relative p-8 rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 hover:border-purple-500/50 hover:bg-gradient-to-br hover:from-purple-500/10 hover:to-pink-500/10 transition-all duration-300 hover:scale-105">
+            <!-- Neural quote icon -->
+            <div class="absolute top-6 right-6 opacity-20 group-hover:opacity-40 transition-opacity duration-300">
+              <span class="w-8 h-8 text-purple-400">🧠</span>
+            </div>
+            
+            <!-- Rating -->
+            <div class="flex gap-1 mb-6">
+              {Array.from({ length: testimonial.rating }).map(() => (
+                <span class="w-5 h-5 text-yellow-400">⭐</span>
+              ))}
+            </div>
+            
+            <!-- Content -->
+            <p class="text-slate-300 leading-relaxed mb-6 text-lg">
+              "{testimonial.content}"
+            </p>
+            
+            <!-- Author -->
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-2xl">
+                {testimonial.avatar}
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">{testimonial.name}</h4>
+                <p class="text-sm text-slate-400">{testimonial.position}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Stats section -->
+    <div class="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl p-8 md:p-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-3xl md:text-4xl font-bold text-purple-400 mb-2">99.7%</div>
+          <div class="text-slate-400">Precisión Detección</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-4xl font-bold text-pink-400 mb-2">85%</div>
+          <div class="text-slate-400">Reducción Ansiedad</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">0.1s</div>
+          <div class="text-slate-400">Tiempo Validación</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-4xl font-bold text-green-400 mb-2">∞</div>
+          <div class="text-slate-400">Escalabilidad Neural</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

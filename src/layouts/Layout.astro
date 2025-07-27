@@ -2,13 +2,15 @@
 import { SEO } from "astro-seo";
 import Footer from "@components/footer.astro";
 import Navbar from "@components/navbar/navbar.astro";
-import "@fontsource-variable/inter/index.css";
+import "@fontsource-variable/inter";
 import '@fontsource-variable/bricolage-grotesque';
-
-
 
 export interface Props {
   title: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  type?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
@@ -18,25 +20,99 @@ const resolvedImageWithDomain = new URL(
   Astro.site
 ).toString();
 
-const { title } = Astro.props;
+const { 
+  title, 
+  description = "CodeIA - Especialistas en detección de fake news con inteligencia artificial. Validamos datos reales y construimos dispositivos inteligentes que leen tu mente y procesan agentes en tiempo real, eliminando la paranoia de la interacción cerebro-IA.",
+  keywords = "inteligencia artificial, IA, fake news, detección, cerebro-IA, simbiosis, validación datos, psicología conversación, Chile, tecnología futurista, NUBBIN, OpenAI, Anthropic",
+  image = resolvedImageWithDomain,
+  type = "website"
+} = Astro.props;
 
 const makeTitle = title
-  ? title + " | " + "codeIA"
-  : "codeIA Tecnología para el futuro";
+  ? title + " | " + "CodeIA - Simbiosis Cerebro-IA"
+  : "CodeIA - Validamos tus Datos Reales | Simbiosis Cerebro-IA";
 ---
 
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/opengraph.jpg" as="image" />
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//www.youtube.com" />
+    <link rel="dns-prefetch" href="//api.whatsapp.com" />
+    <link rel="dns-prefetch" href="//github.com" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="CodeIA" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#7c3aed" />
+    <meta name="color-scheme" content="dark" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={makeTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="CodeIA" />
+    <meta property="og:locale" content="es_ES" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={makeTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+    <meta property="twitter:creator" content="@devjaime" />
+    <meta property="twitter:site" content="@devjaime" />
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="geo.region" content="CL" />
+    <meta name="geo.placename" content="Chile" />
+    <meta name="geo.position" content="-33.4489;-70.6693" />
+    <meta name="ICBM" content="-33.4489, -70.6693" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "CodeIA",
+        "url": "https://codeia.cl",
+        "logo": "https://codeia.cl/favicon.svg",
+        "description": "Especialistas en detección de fake news con inteligencia artificial y simbiosis cerebro-IA",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "CL",
+          "addressLocality": "Chile"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "availableLanguage": ["Spanish", "English"]
+        },
+        "sameAs": [
+          "https://github.com/codeIASpa"
+        ]
+      }
+    </script>
 
-    <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="codeIA tecnología para el futuro"
+      description={description}
       canonical={canonicalURL}
       twitter={{
         creator: "@devjaime",
@@ -46,12 +122,12 @@ const makeTitle = title
       openGraph={{
         basic: {
           url: canonicalURL,
-          type: "website",
-          title: `codeia  Tecnología para el futuro `,
-          image: resolvedImageWithDomain,
+          type: type,
+          title: makeTitle,
+          image: image,
         },
         image: {
-          alt: "codeIA Homepage Screenshot",
+          alt: "CodeIA - Simbiosis Cerebro-IA y Detección de Fake News",
         },
       }}
     />
@@ -60,11 +136,53 @@ const makeTitle = title
     <Navbar />
     <slot />
     <Footer />
+    
+    <!-- Performance optimizations -->
     <style is:global>
       /* Improve Page speed */
       /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
       img {
         content-visibility: auto;
+      }
+      
+      /* Optimize animations for mobile */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+      
+      /* Improve mobile performance */
+      @media (max-width: 768px) {
+        .animate-pulse,
+        .animate-ping,
+        .animate-spin-slow,
+        .animate-spin-slow-reverse {
+          animation-duration: 2s !important;
+        }
+      }
+      
+      /* Optimize font loading */
+      .font-display {
+        font-display: swap;
+      }
+      
+      /* Reduce layout shift */
+      .hero-animation {
+        aspect-ratio: 16/9;
+        min-height: 400px;
+      }
+      
+      /* Improve touch targets on mobile */
+      @media (max-width: 768px) {
+        button, a {
+          min-height: 44px;
+          min-width: 44px;
+        }
       }
     </style>
   </body>

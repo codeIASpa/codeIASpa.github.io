@@ -2,8 +2,14 @@
 import Container from "@components/container.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import LanguageSelector from "../language-selector.astro";
 
-const menuitems = [
+const menuitems: Array<{
+  title: string;
+  path: string;
+  children?: Array<{ title: string; path: string }>;
+  badge?: boolean;
+}> = [
   {
     title: "Proyectos",
     path: "#",
@@ -12,15 +18,8 @@ const menuitems = [
     { title: "Soluciones Inteligentes para Restaurantes", path: "/demo/cartadigital-ia/index.html" },
     { title: "Optimización de Recursos Agrícolas con IA", path: "/demo/huertos-inteligentes/index.html" },
     { title: "Detección de Fake News con IA", path: "/demo/deteccion-fakenews/index.html" },
-
-
-    //   { title: "404 Page", path: "/404" },
     ],
   },
-//   {
-//     title: "Misión",
-//     path: "/pricing",
-//   },
   {
     title: "Nosotros",
     path: "/about",
@@ -33,29 +32,24 @@ const menuitems = [
     title: "Contacto",
     path: "/contact",
   },
-//   {
-//     title: "Pro Version",
-//     badge: true,
-//     path: "https://astroship-pro.web3templates.com/",
-//   },
 ];
 ---
 
 <Container>
-  <header class="flex flex-col lg:flex-row justify-between items-center my-5" >
+  <header class="flex flex-col lg:flex-row justify-between items-center my-3 md:my-5" >
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
-        <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-200">code</span><span
-            class="text-pink-400">IA</span
-          >
+        <a href="/" class="text-base md:text-lg flex items-center" aria-label="CodeIA Homepage">
+          <span class="font-bold text-slate-200">code</span>
+          <span class="text-pink-400">IA</span>
+          <span class="ml-1">🤖</span>
         </a>
         <div class="block lg:hidden">
-          <MenuIcon class="w-4 h-4 text-gray-200" />
+          <MenuIcon class="w-5 h-5 md:w-6 md:h-6 text-gray-200 hover:text-pink-400 transition-colors duration-200" aria-label="Toggle menu" />
         </div>
       </div>
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
-        <ul class="flex flex-col lg:flex-row lg:gap-3">
+        <ul class="flex flex-col lg:flex-row lg:gap-3 space-y-2 lg:space-y-0">
           {
             menuitems.map((item, index) => (
               <>
@@ -71,8 +65,9 @@ const menuitems = [
                   <li>
                     <a
                       href={item.path}
-                      class="flex lg:px-3 py-2 items-center text-gray-300 hover:text-pink-400">
-                      <span> {item.title}</span>
+                      class="flex lg:px-3 py-2 md:py-3 items-center text-gray-300 hover:text-pink-400 transition-colors duration-200 text-sm md:text-base font-medium"
+                      aria-label={`Navigate to ${item.title}`}>
+                      <span>{item.title}</span>
                       {item.badge && (
                         <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
                           New
@@ -85,17 +80,37 @@ const menuitems = [
             ))
           }
         </ul>
-        <!-- <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="#" style="muted" block size="md">Log in</Link>
-          <Link href="#" size="md" block>Sign up</Link>
-        </div> -->
+        
+        <!-- Language Selector - Desktop -->
+        <div class="hidden lg:flex items-center gap-2 ml-6">
+          <LanguageSelector />
+        </div>
+        
+        <!-- Language Selector - Mobile -->
+        <div class="lg:hidden flex items-center mt-4 pt-4 border-t border-gray-700">
+          <LanguageSelector />
+        </div>
       </MenuItems>
     </Astronav>
-    <div>
-      <!-- <div class="hidden lg:flex items-center gap-4">
-        <a href="#">Log in</a>
-        <Link href="#" size="md">Sign up</Link>
-      </div> -->
-    </div>
   </header>
 </Container>
+
+<style>
+  /* Improve mobile menu performance */
+  @media (max-width: 1024px) {
+    .astro-navbar-menu {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+    }
+  }
+  
+  /* Improve touch targets on mobile */
+  @media (max-width: 768px) {
+    .astro-navbar-menu a {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+  }
+</style>

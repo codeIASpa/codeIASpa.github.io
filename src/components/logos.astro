@@ -1,18 +1,115 @@
 ---
-// @ts-ignore
 import { Icon } from "astro-icon/components";
+
+const technologies = [
+  {
+    name: "TensorFlow",
+    icon: "bx:bxs-brain",
+    description: "Machine Learning"
+  },
+  {
+    name: "PyTorch",
+    icon: "bx:bxs-network-chart",
+    description: "Deep Learning"
+  },
+  {
+    name: "OpenAI",
+    icon: "bx:bxs-bot",
+    description: "GPT & LLMs"
+  },
+  {
+    name: "Hugging Face",
+    icon: "bx:bxs-message-rounded-dots",
+    description: "NLP Models"
+  },
+  {
+    name: "Scikit-learn",
+    icon: "bx:bxs-chart",
+    description: "ML Algorithms"
+  },
+  {
+    name: "Pandas",
+    icon: "bx:bxs-data",
+    description: "Data Analysis"
+  },
+  {
+    name: "NumPy",
+    icon: "bx:bxs-calculator",
+    description: "Scientific Computing"
+  },
+  {
+    name: "Python",
+    icon: "bx:bxl-python",
+    description: "Programming"
+  }
+];
 ---
 
-<div class="mt-24">
-  <h2 class="text-center text-slate-500">Funciona con sus técnologias</h2>
-  <div class="flex gap-8 md:gap-20 items-center justify-center mt-10 flex-wrap">
+<div class="relative py-20">
+  <!-- Background effects -->
+  <div class="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full text-sm text-purple-300 mb-6">
+        <span class="w-4 h-4">💾</span>
+        <span>Tecnologías de IA</span>
+      </div>
+      
+      <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight mb-6">
+        <span class="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+          Construimos con las Mejores
+        </span>
+        <br />
+        <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          Tecnologías de IA
+        </span>
+      </h2>
+      
+      <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+        Utilizamos las herramientas más avanzadas y confiables del ecosistema de inteligencia artificial 
+        para crear soluciones robustas y escalables.
+      </p>
+    </div>
 
-    <Icon class="size-8 md:size-12" name="simple-icons:react" />
-    <Icon class="size-8 md:size-12" name="simple-icons:svelte" />
-    <Icon class="size-8 md:size-12" name="simple-icons:astro" />
-    <Icon class="size-8 md:size-16" name="simple-icons:tailwindcss" />
-    <Icon class="size-8 md:size-16" name="simple-icons:alpinedotjs" />
-    <Icon class="size-8 md:size-12" name="simple-icons:vercel" />
+    <!-- Technology grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+      {
+        technologies.map((tech) => (
+          <div class="group text-center p-6 rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 hover:border-purple-500/50 hover:bg-gradient-to-br hover:from-purple-500/10 hover:to-pink-500/10 transition-all duration-300 hover:scale-105">
+            <div class="flex justify-center mb-4">
+              <span class="w-12 h-12 md:w-16 md:h-16 text-slate-400 group-hover:text-purple-400 transition-colors duration-300">⚛️</span>
+            </div>
+            <h3 class="font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors duration-300">
+              {tech.name}
+            </h3>
+            <p class="text-sm text-slate-500 group-hover:text-slate-400 transition-colors duration-300">
+              {tech.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
 
+    <!-- Additional technologies section -->
+    <div class="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl p-8 md:p-12">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+          También Trabajamos con
+        </h3>
+        <p class="text-slate-400 text-lg">
+          Frameworks y herramientas adicionales para crear soluciones completas
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-6 items-center justify-items-center">
+        <span class="w-8 h-8 md:w-12 md:h-12 text-slate-400 hover:text-purple-400 transition-colors duration-300">⚛️</span>
+        <span class="w-8 h-8 md:w-12 md:h-12 text-slate-400 hover:text-purple-400 transition-colors duration-300">🟩</span>
+        <span class="w-8 h-8 md:w-12 md:h-12 text-slate-400 hover:text-purple-400 transition-colors duration-300">🐳</span>
+        <span class="w-8 h-8 md:w-12 md:h-12 text-slate-400 hover:text-purple-400 transition-colors duration-300">🖥️</span>
+        <span class="w-8 h-8 md:w-12 md:h-12 text-slate-400 hover:text-purple-400 transition-colors duration-300">☁️</span>
+        <span class="w-8 h-8 md:w-12 md:h-12 text-slate-400 hover:text-purple-400 transition-colors duration-300">💽</span>
+      </div>
+    </div>
   </div>
 </div>

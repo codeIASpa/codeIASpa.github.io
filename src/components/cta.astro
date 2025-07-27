@@ -1,17 +1,111 @@
 ---
 import Link from "./ui/link.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<!-- <div
-  class="bg-black p-8 md:px-20 md:py-20 mt-20 mx-auto max-w-5xl rounded-lg flex flex-col items-center text-center">
-  <h2 class="text-white text-4xl md:text-6xl tracking-tight">
-    Sitios web más rápidos.
-  </h2>
-  <p class="text-slate-400 mt-4 text-lg md:text-xl">
-    Pull content from anywhere and serve it fast with Astro's next-gen island
-    architecture.
-  </p>
-  <div class="flex mt-5">
-    <Link href="#" style="inverted">Get Started</Link>
+<div class="relative py-20 overflow-hidden">
+  <!-- Background effects -->
+  <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-pink-900/20 to-slate-900"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(168,85,247,0.1)_0%,transparent_50%)]"></div>
+  
+  <!-- Neural network elements -->
+  <div class="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse"></div>
+  <div class="absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-full blur-2xl animate-pulse delay-2000"></div>
+  
+  <div class="relative z-10 max-w-6xl mx-auto px-4">
+    <div class="bg-gradient-to-br from-slate-800/50 via-purple-900/30 to-slate-900/50 border border-purple-500/20 rounded-3xl p-8 md:p-16 backdrop-blur-sm">
+      <div class="text-center">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full text-sm text-purple-300 mb-6">
+          <span class="w-4 h-4">🧠</span>
+          <span>Transcender la Realidad</span>
+        </div>
+        
+        <h2 class="text-4xl md:text-6xl font-bold lg:tracking-tight mb-6">
+          <span class="bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+            El Futuro de la
+          </span>
+          <br />
+          <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+            Conciencia Humana
+          </span>
+        </h2>
+        
+        <p class="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-8">
+          Únete a la revolución de la simbiosis cerebro-IA. Validamos tu realidad, 
+          eliminamos la paranoia y creamos experiencias que trascienden los límites 
+          de la conciencia convencional.
+        </p>
+        
+        <!-- Benefits grid -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-purple-500/10 to-transparent border border-purple-500/20">
+            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+              <span class="w-6 h-6 text-white">🛡️</span>
+            </div>
+            <div class="text-left">
+              <h3 class="font-semibold text-white">Validación de Realidad</h3>
+              <p class="text-sm text-slate-400">99.7% precisión en detección</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-blue-500/10 to-transparent border border-blue-500/20">
+            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+              <span class="w-6 h-6 text-white">🧠</span>
+            </div>
+            <div class="text-left">
+              <h3 class="font-semibold text-white">Simbiosis Cerebro-IA</h3>
+              <p class="text-sm text-slate-400">Eliminación de paranoia</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-green-500/10 to-transparent border border-green-500/20">
+            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+              <span class="w-6 h-6 text-white">💬</span>
+            </div>
+            <div class="text-left">
+              <h3 class="font-semibold text-white">Psicología Conversacional</h3>
+              <p class="text-sm text-slate-400">Experiencias terapéuticas</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- CTA buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="https://api.whatsapp.com/send?phone=56936418650"
+            target="_blank"
+            class="group flex gap-3 items-center justify-center bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25"
+            rel="noopener">
+            <span class="w-6 h-6 group-hover:animate-bounce">🧠</span>
+            Validar mi Realidad
+          </a>
+          
+          <a
+            href="/contact"
+            class="group flex gap-3 items-center justify-center border-2 border-purple-500/50 text-purple-300 hover:bg-purple-500/10 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300">
+            <span class="w-6 h-6 group-hover:animate-pulse">💬</span>
+            Iniciar Simbiosis
+          </a>
+        </div>
+        
+        <!-- Trust indicators -->
+        <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-slate-400">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 text-green-400">✅</span>
+            <span class="text-sm">Validación 100% Gratuita</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 text-green-400">✅</span>
+            <span class="text-sm">Sin Paranoia</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 text-green-400">✅</span>
+            <span class="text-sm">Respuesta en 0.1s</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div> -->
+</div>

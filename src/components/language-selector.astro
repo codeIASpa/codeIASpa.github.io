@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+import { languages, getCurrentLanguage } from "../utils/i18n.js";
+
+const currentLang = getCurrentLanguage();
+const currentLangData = languages[currentLang];
+---
+
+<div class="relative group" id="language-selector">
+  <button 
+    class="flex items-center gap-2 px-3 py-2 text-gray-300 hover:text-pink-400 transition-colors duration-200"
+    id="language-button">
+    <span class="text-lg">🌐</span>
+    <span class="text-sm font-medium">{currentLangData.code}</span>
+    <span class="w-3 h-3 transition-transform group-hover:rotate-180">▼</span>
+  </button>
+  
+  <!-- Dropdown Menu -->
+  <div 
+    class="absolute right-0 top-full mt-1 w-32 bg-slate-800 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+    id="language-dropdown">
+    <div class="py-1">
+      {Object.entries(languages).map(([code, lang]) => (
+        <button 
+          class="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-pink-400 transition-colors duration-200"
+          data-lang={code}
+          onclick={`changeLanguage('${code}')`}>
+          <span class="text-green-400">{lang.flag}</span>
+          <span>{lang.name}</span>
+          {code === currentLang && (
+            <span class="ml-auto text-pink-400">✓</span>
+          )}
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  function changeLanguage(lang) {
+    // Guardar el idioma en localStorage
+    localStorage.setItem('codeia-language', lang);
+    
+    // Recargar la página para aplicar los cambios
+    window.location.reload();
+  }
+  
+  // Cerrar dropdown al hacer clic fuera
+  document.addEventListener('click', function(event) {
+    const selector = document.getElementById('language-selector');
+    const dropdown = document.getElementById('language-dropdown');
+    
+    if (selector && dropdown && event.target instanceof Node && !selector.contains(event.target)) {
+      dropdown.classList.add('opacity-0', 'invisible');
+    }
+  });
+</script> 
