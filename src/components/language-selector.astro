@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
 import { languages, getCurrentLanguage } from "../utils/i18n.js";
 
 const currentLang = getCurrentLanguage();
@@ -22,9 +21,8 @@ const currentLangData = languages[currentLang];
     <div class="py-1">
       {Object.entries(languages).map(([code, lang]) => (
         <button 
-          class="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-pink-400 transition-colors duration-200"
-          data-lang={code}
-          onclick={`changeLanguage('${code}')`}>
+          class="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-pink-400 transition-colors duration-200 language-option"
+          data-lang={code}>
           <span class="text-green-400">{lang.flag}</span>
           <span>{lang.name}</span>
           {code === currentLang && (
@@ -37,21 +35,31 @@ const currentLangData = languages[currentLang];
 </div>
 
 <script>
+  // Función para cambiar idioma
   function changeLanguage(lang) {
-    // Guardar el idioma en localStorage
     localStorage.setItem('codeia-language', lang);
-    
-    // Recargar la página para aplicar los cambios
     window.location.reload();
   }
   
-  // Cerrar dropdown al hacer clic fuera
-  document.addEventListener('click', function(event) {
-    const selector = document.getElementById('language-selector');
-    const dropdown = document.getElementById('language-dropdown');
+  // Agregar event listeners cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', function() {
+    // Event listeners para los botones de idioma
+    const languageOptions = document.querySelectorAll('.language-option');
+    languageOptions.forEach(option => {
+      option.addEventListener('click', function() {
+        const lang = this.getAttribute('data-lang');
+        changeLanguage(lang);
+      });
+    });
     
-    if (selector && dropdown && event.target instanceof Node && !selector.contains(event.target)) {
-      dropdown.classList.add('opacity-0', 'invisible');
-    }
+    // Cerrar dropdown al hacer clic fuera
+    document.addEventListener('click', function(event) {
+      const selector = document.getElementById('language-selector');
+      const dropdown = document.getElementById('language-dropdown');
+      
+      if (selector && dropdown && event.target instanceof Node && !selector.contains(event.target)) {
+        dropdown.classList.add('opacity-0', 'invisible');
+      }
+    });
   });
 </script> 
